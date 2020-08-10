@@ -61,3 +61,65 @@ app.prepare().then(() => {
   })
 })
 ```
+
+### 3.getInitialProps中初始化数据
+
+```javascript
+import React, { Component } from 'react'
+import Comp from '@components/pages/index'
+import { AppModal, CommonModel } from '@models/combine'
+
+interface IProps {
+  router: any
+}
+class Index extends Component<IProps> {
+  static async getInitialProps(ctx) {
+    const { req } = ctx
+    try {
+      // xxxx 获取数据
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  render() {
+    return <Comp />
+  }
+}
+
+export default Index
+```
+
+如果项目中用到了Redux，那么，接口获得的初始化数据需要传递给ctx.req，从而在前台初始化Redux时，才能够将初始数据带过来！！
+
+### 4. _app.js
+
+统一布局处理，错误处理
+
++ 页面布局
++ 当路由变化时保持页面状态
++ 使用componentDidCatch自定义处理错误
+
+```javascript
+import React from 'react'
+import App, { Container } from 'next/app'
+import Layout from '../components/Layout'
+import '../styles/index.css'
+
+export default class MyApp extends App {
+
+    componentDidCatch(error, errorInfo) {
+        console.log('CUSTOM ERROR HANDLING', error)
+        super.componentDidCatch(error, errorInfo)
+    }
+
+    render() {
+        const { Component, pageProps } = this.props
+        return (
+            <Container>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+            </Container>)
+    }
+}
+```
