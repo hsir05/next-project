@@ -12,6 +12,8 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+[出自文章](https://www.jianshu.com/p/3d17ee447f0c?utm_campaign) 
+
 ### 2. next 文件即路由
 
 在pages文件目录下建立list文件，哪些路由就是`localhost:3000/list`
@@ -121,5 +123,50 @@ export default class MyApp extends App {
                 </Layout>
             </Container>)
     }
+}
+```
+
+### 5. document.js
+
+_document.js 用于初始化服务端时添加文档标记元素，比如自定义meta标签
+
+```javascript
+
+import Document, {
+  Head,
+  Main,
+  NextScript,
+} from 'next/document'
+import * as React from 'react'
+
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx)
+    return { ...initialProps }
+  }
+
+  props
+
+  render() {
+    return (
+      <html>
+        <Head>
+          <meta charSet="utf-8" />
+          <meta httpEquiv="x-ua-compatible" content="ie=edge, chrome=1" />
+          <meta name="renderer" content="webkit|ie-comp|ie-stand" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,viewport-fit=cover"
+          />
+          <meta name="keywords" content="Next.js demo" />
+          <meta name="description" content={'This is a next.js demo'} />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </html>
+    )
+  }
 }
 ```
