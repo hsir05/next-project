@@ -168,3 +168,8 @@ export default class MyDocument extends Document {
   }
 }
 ```
+
+### 4. 路由
+
+如果通过<Link href={href}></Link>或者<a href={href}></a>做路由跳转，那么，目标页面一定是全渲染，执行getInitialProps钩子函数。
+浅层路由允许改变 URL但是不执行getInitialProps 生命周期。可以加载相同页面的 URL，得到更新后的路由属性pathname和query，并不失去 state 状态。
