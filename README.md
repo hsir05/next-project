@@ -175,3 +175,6 @@ export default class MyDocument extends Document {
 浅层路由允许改变 URL但是不执行getInitialProps 生命周期。可以加载相同页面的 URL，得到更新后的路由属性pathname和query，并不失去 state 状态。
 
 因为浅路由不会执行服务端初始化数据函数，所以服务端返回HTML的速度加快，但是，返回的为空内容，不适合SEO。并且，你需要在浏览器钩子函数componentDidMount 中重新调用接口获得数据再次渲染内容区。
+
+浅路由模式比较适合搜索页面，比如，每次的搜索接口都是按照keyword参数发生变化：
+/search?keyword=a 到/search?keyword=b
