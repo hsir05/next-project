@@ -201,4 +201,48 @@ export default class MyDocument extends Document {
         ]
 ```
 
+对于.babelrc的功能，我们需要安装以下包
 
+```javascript
+yarn add @zeit/next-css @zeit/next-less less 
+yarn add babel-plugin-import  
+yarn add @babel/plugin-proposal-decorators 
+yarn add babel-plugin-module-resolver
+```
+
+
+## 5 部署
+
+package.js
+```
+"scripts": {
+    "dev": "next -p 3006",
+    "start": "next start -p 3006",
+    "build": "next build",
+    "export": "next build && next export && serve out"
+  },
+```
+
+yarn build 就可以打包我们的项目，然后yarn start 就可以访问
+
+next 提供输出静态页面：next export。
+
+serve 是很好用的本地服务器，我想大家都遇到打包后的html，路径不能直接访问把，就是因为默认是需要启动服务才能访问的，serve完美解决了我们的问题。
+
+```javascript
+yarn global add serve
+yarn export
+```
+
+### 服务端
+
+**nodemon可以自动重启服务，-i ./pages是不需要重启的路径。**
+
+
+```javascript
+"scripts": {
+    "dev": "node ./server.js",
+    "build": "next build",
+    "start": "nodemon ./server.js  -i ./pages ./components ./utils"
+  },
+```
