@@ -178,3 +178,27 @@ export default class MyDocument extends Document {
 
 浅路由模式比较适合搜索页面，比如，每次的搜索接口都是按照keyword参数发生变化：
 /search?keyword=a 到/search?keyword=b
+
+### 5.babelrc 配置
+
+```javascript
+// 让我们可以使用根路径，避免相对路径的混乱，如import Head from '@/components/Head'
+        [
+            "module-resolver",
+            {
+                "alias": {
+                    "@": "./"
+                }
+            }
+        ],
+        // 按需加载并且可以使用less的配置
+        [
+            "import",
+            {
+                "libraryName": "antd",
+                "style": true
+            }
+        ]
+```
+
+

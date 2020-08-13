@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next -p 3006",
+    "start": "next start -p 3006",
     "build": "next build",
-    "start": "next start"
+    "export": "next build && next export && serve out"
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.10.5",
